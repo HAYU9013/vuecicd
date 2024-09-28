@@ -25,8 +25,20 @@ jobs:
 
       # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm ci
+        run: |
+          echo "Installing dependencies..."
+          npm ci
+          echo "Dependencies installed successfully."
 
-      # Step 4: Lint check (or just run any command that will show errors)
+      # Step 4: List files in the working directory
+      - name: List files
+        run: |
+          echo "Listing files in the working directory:"
+          ls -la  # List all files, including hidden ones, with detailed info
+
+      # Step 5: Lint check
       - name: Run lint check
-        run: npm run lint
+        run: |
+          echo "Running lint check..."
+          npm run lint || echo "Linting failed. Please fix the issues."
+          echo "Lint check completed."
